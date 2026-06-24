@@ -3,9 +3,6 @@
     <!-- Our own org: redroid components + patched AOSP projects -->
     <remote name="redroid" fetch="https://github.com/rk-docker/" revision="redroid-15.0.0" />
 
-    <!-- Upstream redroid projects we did NOT fork (unchanged) -->
-    <remote name="redroid-upstream" fetch="https://github.com/remote-android/" revision="master" />
-
     <!-- remove unused projects -->
     <remove-project name="platform/prebuilts/bazel/darwin-x86_64" />
     <remove-project name="platform/prebuilts/clang/host/darwin-x86" />
@@ -28,7 +25,7 @@
     <project path="device/redroid" name="device_redroid" groups="redroid" remote="redroid" />
     <project path="device/redroid-prebuilts" name="device_redroid-prebuilts" groups="redroid" remote="redroid" clone-depth="1" />
     <project path="hardware/redroid/c2" name="redroid-c2" groups="redroid" remote="redroid" />
-    <project path="hardware/redroid/omx" name="redroid-omx" groups="redroid" remote="redroid-upstream" />
+    <project path="hardware/redroid/omx" name="redroid-omx" groups="redroid" remote="redroid" />
     <project path="vendor/redroid" name="vendor_redroid" groups="redroid" remote="redroid" />
 
 </manifest>
