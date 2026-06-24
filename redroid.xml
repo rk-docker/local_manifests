@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-    <remote name="redroid" fetch="https://github.com/remote-android/" revision="redroid-15.0.0" />
+    <!-- Our own org: redroid components + patched AOSP projects -->
+    <remote name="redroid" fetch="https://github.com/rk-docker/" revision="redroid-15.0.0" />
+
+    <!-- Upstream redroid projects we did NOT fork (unchanged) -->
+    <remote name="redroid-upstream" fetch="https://github.com/remote-android/" revision="master" />
 
     <!-- remove unused projects -->
     <remove-project name="platform/prebuilts/bazel/darwin-x86_64" />
     <remove-project name="platform/prebuilts/clang/host/darwin-x86" />
     <remove-project name="platform/prebuilts/go/darwin-x86" />
 
+    <!-- Patched AOSP projects -> our rk-docker forks -->
+    <remove-project name="platform/frameworks/av" />
+    <project path="frameworks/av" name="platform_frameworks_av" groups="pdk" remote="redroid" />
+
+    <remove-project name="platform/frameworks/native" />
+    <project path="frameworks/native" name="platform_frameworks_native" groups="pdk" remote="redroid" />
+
+    <remove-project name="platform/external/minigbm" />
+    <project path="external/minigbm" name="platform_external_minigbm" groups="pdk" remote="redroid" />
+
+    <remove-project name="platform/packages/modules/common" />
+    <project path="packages/modules/common" name="platform_packages_modules_common" groups="pdk-cw-fs,pdk-fs" remote="redroid" />
+
     <!-- Our own components -->
     <project path="device/redroid" name="device_redroid" groups="redroid" remote="redroid" />
-    <project path="device/redroid-prebuilts" name="device_redroid-prebuilts" groups="redroid" remote="redroid" revision="master" clone-depth="1" />
-    <project path="hardware/redroid/c2" name="redroid-c2" groups="redroid" remote="redroid" revision="master" />
-    <project path="hardware/redroid/omx" name="redroid-omx" groups="redroid" remote="redroid" revision="master" />
-    <project path="vendor/redroid" name="vendor_redroid" groups="redroid" remote="redroid" revision="master" />
+    <project path="device/redroid-prebuilts" name="device_redroid-prebuilts" groups="redroid" remote="redroid" clone-depth="1" />
+    <project path="hardware/redroid/c2" name="redroid-c2" groups="redroid" remote="redroid" />
+    <project path="hardware/redroid/omx" name="redroid-omx" groups="redroid" remote="redroid-upstream" />
+    <project path="vendor/redroid" name="vendor_redroid" groups="redroid" remote="redroid" />
 
 </manifest>
